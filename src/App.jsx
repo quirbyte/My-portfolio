@@ -1,0 +1,36 @@
+import { div } from "framer-motion/client";
+import Navbar from "./components/Navbar";
+import Home from "./sections/Home";
+import About from "./sections/About";
+import Skills from "./sections/Skills";
+import Education from "./sections/Education";
+import Testimonials from "./sections/Testimonials";
+import Projects from "./sections/Projects";
+import Contact from "./sections/Contact";
+import Footer from "./sections/Footer";
+import CustomCursor from "./components/CustomCursor";
+import { useState } from "react";
+import IntroAnimation from "./components/IntroAnimation";
+
+export default function App() {
+  const [introDone, setIntroDone] = useState(false);
+  return (
+    <>
+      {!introDone && <IntroAnimation onFinish={() => setIntroDone(true)} />}
+      {introDone && (
+        <div className="relative gradient text-white">
+          <CustomCursor />
+          <Navbar />
+          <Home />
+          <About />
+          <Education />
+          <Skills />
+          <Projects />
+          <Testimonials />
+          <Contact />
+          <Footer />
+        </div>
+      )}
+    </>
+  );
+}
