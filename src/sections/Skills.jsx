@@ -8,6 +8,7 @@ import {
   FaFigma,
   FaNodeJs,
 } from "react-icons/fa";
+import { GrOracle } from "react-icons/gr";
 import { TbBrandCpp } from "react-icons/tb";
 import { FaC } from "react-icons/fa6";
 import {
@@ -19,6 +20,7 @@ import {
   SiMongodb,
   SiMysql,
   SiPostgresql,
+  SiPrisma,
 } from "react-icons/si";
 import { RiNextjsFill } from "react-icons/ri";
 import { useEffect, useRef, useState } from "react";
@@ -40,6 +42,8 @@ export default function Skills() {
     { icon: <SiTailwindcss />, name: "Tailwind CSS" },
     { icon: <SiMysql />, name: "MySQL" },
     { icon: <SiPostgresql />, name: "Postgre-SQL" },
+    { icon: <SiPrisma />, name: "Prisma ORM"},
+    { icon: <GrOracle />, name: "Oracle"},
     { icon: <FaFigma />, name: "Figma" },
     { icon: <RiNextjsFill />, name: "Next.js" },
   ];
