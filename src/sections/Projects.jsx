@@ -32,9 +32,9 @@ export default function Projects() {
   const projects = useMemo(
     () => [
       {
-        title: "sm studio",
-        link: "https://www.google.com",
-        bgColor: "#0d4d3d",
+        title: "DevLinks",
+        link: "https://devlinks-tau-seven.vercel.app",
+        bgColor: "#D65A12",
         image: isMobile ? photo1 : img1,
       },
       {
@@ -139,7 +139,7 @@ export default function Projects() {
         </div>
         <div className={`absolute ${isMobile ? "bottom-20" : "bottom-10"}`}>
           <a
-            href={activeProject?.link}
+            href={activeProject.link}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-6 py-3 font-semibold rounded-lg bg-white text-black hover:bg-gray-200 transition-all"
