@@ -1,20 +1,17 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 import img1 from "../assets/img1.JPG";
-import img2 from "../assets/img2.JPG";
-import img3 from "../assets/img3.JPG";
+import img2 from "../assets/img2.png";
 import photo1 from "../assets/photo1.JPG";
-import photo2 from "../assets/photo2.PNG";
-import photo3 from "../assets/photo3.png";
+import photo2 from "../assets/photo2.png";
 import { AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
-import { h3 } from "framer-motion/client";
 
 const useIsMobile = (query = "(max-width:639px)") => {
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" && window.matchMedia(query).matches,
   );
   useEffect(() => {
-    if (typeof window === undefined) return;
+    if (typeof window === "undefined") return; // Fixed: check against string "undefined"
     const mql = window.matchMedia(query);
     const handler = (e) => setIsMobile(e.matches);
 
@@ -38,16 +35,10 @@ export default function Projects() {
         image: isMobile ? photo1 : img1,
       },
       {
-        title: "Gamily",
-        link: "https://www.google.com/",
-        bgColor: "#3884d3",
+        title: "Cortex",
+        link: "https://cortex-sage-seven.vercel.app/",
+        bgColor: "#000000",
         image: isMobile ? photo2 : img2,
-      },
-      {
-        title: "Hungry Tiger",
-        link: "https://www.google.com/",
-        bgColor: "#dc9317",
-        image: isMobile ? photo3 : img3,
       },
     ],
     [isMobile],
@@ -76,14 +67,15 @@ export default function Projects() {
         transition: "background-color 400ms ease",
       }}
     >
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
         <h2
           className={`text-3xl font-semibold z-10 text-center ${isMobile ? "mt-4" : "mt-8"}`}
         >
           My Work
         </h2>
+
         <div
-          className={`relative w-full flex-1 flex items-center justify-center ${isMobile ? "-mt-4" : ""}`}
+          className={`relative w-full flex-1 flex items-center justify-center pointer-events-none ${isMobile ? "-mt-4" : ""}`}
         >
           {projects.map((project, idx) => (
             <div
@@ -97,7 +89,7 @@ export default function Projects() {
                     key={project.title}
                     initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opaicty: 0, y: 30 }}
+                    exit={{ opacity: 0, y: 30 }} // Fixed typo: opaicty -> opacity
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     className={`block text-center text-[clamp(2rem,6vw,5rem)] text-white/95 sm:absolute sm:-top-20 sm:left-[35%] lg:left-[-5%] sm:mb-0 italic font-semibold ${isMobile ? "-mt-24" : ""}`}
                     style={{
@@ -109,18 +101,19 @@ export default function Projects() {
                   </motion.h3>
                 )}
               </AnimatePresence>
+
               <div
-                className={`relative w-full overflow-hidden bg-black/20 shadow-2xl md:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.7)] ${isMobile ? "mb-6 rounded-lg" : "mb-10 sm:mb-12 rounded-xl"} h-[62vh] sm:h-[66vh]`}
+                className={`relative w-full overflow-hidden bg-black/20 shadow-2xl md:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.7)] pointer-events-auto ${isMobile ? "mb-6 rounded-lg" : "mb-10 sm:mb-12 rounded-xl"} h-[62vh] sm:h-[66vh]`}
                 style={{ zIndex: 10, transition: "box-shadow 250ms ease" }}
               >
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover drop-shadow-xl md:drop-shadow-2xl"
+                  className="w-full h-full object-cover object-top drop-shadow-xl md:drop-shadow-2xl"
                   style={{
                     position: "relative",
                     zIndex: "10",
-                    filter: "drop-shadow(0,16px 40px rgba(0,0,0,0.65))",
+                    filter: "drop-shadow(0 16px 40px rgba(0,0,0,0.65))",
                     transition: "filter 200ms ease",
                   }}
                   loading="lazy"
@@ -137,12 +130,15 @@ export default function Projects() {
             </div>
           ))}
         </div>
-        <div className={`absolute ${isMobile ? "bottom-20" : "bottom-10"}`}>
+
+        <div
+          className={`absolute z-30 pointer-events-auto ${isMobile ? "bottom-20" : "bottom-10"}`}
+        >
           <a
             href={activeProject.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-6 py-3 font-semibold rounded-lg bg-white text-black hover:bg-gray-200 transition-all"
+            className="inline-block px-6 py-3 font-semibold rounded-lg bg-white text-black hover:bg-gray-200 transition-all shadow-md"
             aria-label={`view ${activeProject?.title}`}
           >
             View Project
