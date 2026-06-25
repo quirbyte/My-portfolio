@@ -11,7 +11,7 @@ const useIsMobile = (query = "(max-width:639px)") => {
     typeof window !== "undefined" && window.matchMedia(query).matches,
   );
   useEffect(() => {
-    if (typeof window === "undefined") return; // Fixed: check against string "undefined"
+    if (typeof window === "undefined") return;
     const mql = window.matchMedia(query);
     const handler = (e) => setIsMobile(e.matches);
 
