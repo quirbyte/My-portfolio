@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const useIsMobile = (query = "(max-width:639px)") => {
   const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" && window.matchMedia(query).matches,
+    typeof window !== undefined && window.matchMedia(query).matches,
   );
   useEffect(() => {
     if (typeof window === "undefined") return;
