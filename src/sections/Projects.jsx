@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, useMemo } from "react";
 import img1 from "../assets/img1.JPG";
 import img2 from "../assets/img2.png";
 import photo1 from "../assets/photo1.JPG";
-import photo2 from "../assets/photo2.png";
+import photo2 from "../assets/photo2.PNG";
 import { AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
 
